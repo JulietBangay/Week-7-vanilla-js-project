@@ -10,15 +10,28 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Vanilla weather app</title>
   </head>
   <body>
-    <h1>Weather app</h1>
-    <div class="container">
+    <h1>Vanilla weather app</h1>
+
+    <div class="container" id="search-form-container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 buttons">
           <form id="search-city-form">
             <div class="form-group">
               <label for="exampleInputEmail1">Search City</label>
@@ -36,47 +49,51 @@
             >
               Submit
             </button>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="search-current-location-button"
-            >
-              Search current location
-            </button>
+            <span id="button-span">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="search-current-location-button"
+              >
+                Search current location
+              </button>
+            </span>
           </form>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <div id="displayed-city-date-time">
-            <span id="current-city">London</span>
-            <br />
-            <span id="current-date">Monday November 29</span>
-            <div id="current-time">14:21</div>
+    <div id="current-details">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <div id="displayed-city-date-time">
+              <span id="current-city">London</span>
+              <br />
+              <span id="current-date">Monday November 29</span>
+              <div id="current-time">14:21</div>
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div id="current-weather-conditions">
-            <div id="current-weather-status">
-              It is currently <span id="weather"></span>
-            </div>
-            <div id="current-temperature">
-              Current temperature:
-              <span class="temperature"></span>
-              <a href="#" id="celsius-link">°C</a>
-              |
-              <a href="#" id="farenheit-link">°F</a>
-            </div>
-            <div id="current-humidity">
-              Current humidity:
-              <span id="humidity"></span>
-              %
-            </div>
-            <div id="current-windspeed">
-              Current windspeed:
-              <span id="windspeed"></span>kmph
+          <div class="col-6">
+            <div id="current-weather-conditions">
+              <div id="current-weather-status">
+                It is currently <span id="weather"></span>
+              </div>
+              <div id="current-temperature">
+                Current temperature:
+                <span class="temperature"></span>
+                <a href="#" id="celsius-link">°C</a>
+                |
+                <a href="#" id="farenheit-link">°F</a>
+              </div>
+              <div id="current-humidity">
+                Current humidity:
+                <span id="humidity"></span>
+                %
+              </div>
+              <div id="current-windspeed">
+                Current windspeed:
+                <span id="windspeed"></span>kmph
+              </div>
             </div>
           </div>
         </div>

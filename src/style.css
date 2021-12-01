@@ -1,3 +1,51 @@
+body {
+  font-family: "comfortaa";
+  background: linear-gradient(to top, #fff1eb 0%, #6bccf9 100%);
+}
+
 h1 {
   text-align: center;
+  font-family: "fredericka the great";
+  color: white;
+  padding: 20px;
+}
+
+button {
+  display: inline;
+}
+
+div.form-group {
+  color: white;
+  font-size: 20px;
+}
+
+#search-city-button,
+#search-current-location-button {
+  background: #ff9776;
+  border: #ff9776;
+}
+
+div.buttons {
+  width: 500px;
+}
+
+#search-form-container {
+  margin: 0;
+  padding-left: 58px;
+}
+
+div.col-6 {
+  padding: 20px;
+}
+
+#current-details {
+  border: solid 5px white;
+  width: 800px;
+  margin: auto;
+}
+
+#current-city {
+  font-family: "fredericka the great";
+  font-weight: 700;
+  font-size: 40px;
 }
