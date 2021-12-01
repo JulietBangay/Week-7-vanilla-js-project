@@ -22,25 +22,28 @@ div.form-group {
 #search-city-button,
 #search-current-location-button {
   background: #ff9776;
-  border: #ff9776;
+  border: solid 1px #ff9776;
+  transition: all 200ms ease-in-out;
+}
+
+#search-city-button:hover,
+#search-current-location-button:hover {
+  background: #ffedff;
+  color: #ff9776;
 }
 
 div.buttons {
   width: 500px;
 }
 
-#search-form-container {
-  margin: 0;
-  padding-left: 58px;
-}
-
+div.col-12,
 div.col-6 {
   padding: 20px;
 }
 
 #current-details {
-  border: solid 5px white;
-  width: 800px;
+  border: solid 10px white;
+  width: 1000px;
   margin: auto;
 }
 
@@ -48,4 +51,46 @@ div.col-6 {
   font-family: "fredericka the great";
   font-weight: 700;
   font-size: 40px;
+}
+
+#current-date,
+#current-time {
+  font-size: 25px;
+}
+
+#current-weather-conditions {
+  font-size: 20px;
+}
+
+#forecasts {
+  font-size: 20px;
+  text-align: center;
+  padding: 30px;
+}
+
+#celsius-link,
+#farenheit-link {
+  color: #ff487e;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#celsius-link:hover,
+#farenheit-link:hover {
+  text-decoration: underline;
+  color: #ad2e65;
+}
+
+p {
+  text-align: center;
+}
+
+#github-repository {
+  text-decoration: none;
+  color: #ff487e;
+}
+
+#github-repository:hover {
+  text-decoration: underline;
+  color: #ad2e65;
 }
