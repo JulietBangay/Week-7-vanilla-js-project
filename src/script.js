@@ -47,7 +47,10 @@ function openingPageCurrentLocation() {
   function searchCurrentLocation(position) {
     let apiKey = "f85062d84430cd35a6b8db439bd6c8f6";
     let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-    axios.get(weatherApiUrl).then(displayWeatherCondition);
+    axios
+      .get(weatherApiUrl)
+      .then(displayWeatherCondition)
+      .then(weatherIconDisplay);
     function displayWeatherCondition(response) {
       console.log(response);
       celsiusTemperature = Math.round(response.data.main.temp);
@@ -63,6 +66,36 @@ function openingPageCurrentLocation() {
       windspeed.innerHTML = Math.round(response.data.wind.speed);
       let description = document.querySelector("#weather-description");
       description.innerHTML = response.data.weather[0].main;
+    }
+  }
+  function weatherIconDisplay() {
+    let description = document.querySelector("#weather-description");
+    if (description.innerHTML === "Thunderstorm") {
+      document.getElementById("weather-icon").src = "images/thunder.svg";
+    } else {
+      if (description.innerHTML === "Drizzle") {
+        document.getElementById("weather-icon").src = "images/rainy-4.svg";
+      } else {
+        if (description.innerHTML === "Rain") {
+          document.getElementById("weather-icon").src = "images/rainy-6.svg";
+        } else {
+          if (description.innerHTML === "Snow") {
+            document.getElementById("weather-icon").src = "images/snowy-6.svg";
+          } else {
+            if (description.innerHTML === "Clear") {
+              document.getElementById("weather-icon").src = "images/day.svg";
+            } else {
+              if (description.innerHTML === "Clouds") {
+                document.getElementById("weather-icon").src =
+                  "images/cloudy.svg";
+              } else {
+                document.getElementById("weather-icon").src =
+                  "images/warning.svg";
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -83,7 +116,10 @@ function getCurrentLocation(event) {
 function searchCurrentLocation(position) {
   let apiKey = "f85062d84430cd35a6b8db439bd6c8f6";
   let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(weatherApiUrl).then(displayWeatherCondition);
+  axios
+    .get(weatherApiUrl)
+    .then(displayWeatherCondition)
+    .then(weatherIconDisplay);
   function displayWeatherCondition(response) {
     console.log(response);
     celsiusTemperature = Math.round(response.data.main.temp);
@@ -100,6 +136,36 @@ function searchCurrentLocation(position) {
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
   }
+  function weatherIconDisplay() {
+    let description = document.querySelector("#weather-description");
+    if (description.innerHTML === "Thunderstorm") {
+      document.getElementById("weather-icon").src = "images/thunder.svg";
+    } else {
+      if (description.innerHTML === "Drizzle") {
+        document.getElementById("weather-icon").src = "images/rainy-4.svg";
+      } else {
+        if (description.innerHTML === "Rain") {
+          document.getElementById("weather-icon").src = "images/rainy-6.svg";
+        } else {
+          if (description.innerHTML === "Snow") {
+            document.getElementById("weather-icon").src = "images/snowy-6.svg";
+          } else {
+            if (description.innerHTML === "Clear") {
+              document.getElementById("weather-icon").src = "images/day.svg";
+            } else {
+              if (description.innerHTML === "Clouds") {
+                document.getElementById("weather-icon").src =
+                  "images/cloudy.svg";
+              } else {
+                document.getElementById("weather-icon").src =
+                  "images/warning.svg";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 function searchCity(event) {
@@ -108,7 +174,8 @@ function searchCity(event) {
   cityInput.value = cityInput.value.toLowerCase().trim();
   axios
     .get(`${weatherApiUrl}q=${cityInput.value}&units=metric&appid=${apiKey}`)
-    .then(displayWeatherCondition);
+    .then(displayWeatherCondition)
+    .then(weatherIconDisplay);
   function displayWeatherCondition(response) {
     console.log(response);
     celsiusTemperature = Math.round(response.data.main.temp);
@@ -122,6 +189,36 @@ function searchCity(event) {
     windspeed.innerHTML = Math.round(response.data.wind.speed);
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
+  }
+  function weatherIconDisplay() {
+    let description = document.querySelector("#weather-description");
+    if (description.innerHTML === "Thunderstorm") {
+      document.getElementById("weather-icon").src = "images/thunder.svg";
+    } else {
+      if (description.innerHTML === "Drizzle") {
+        document.getElementById("weather-icon").src = "images/rainy-4.svg";
+      } else {
+        if (description.innerHTML === "Rain") {
+          document.getElementById("weather-icon").src = "images/rainy-6.svg";
+        } else {
+          if (description.innerHTML === "Snow") {
+            document.getElementById("weather-icon").src = "images/snowy-6.svg";
+          } else {
+            if (description.innerHTML === "Clear") {
+              document.getElementById("weather-icon").src = "images/day.svg";
+            } else {
+              if (description.innerHTML === "Clouds") {
+                document.getElementById("weather-icon").src =
+                  "images/cloudy.svg";
+              } else {
+                document.getElementById("weather-icon").src =
+                  "images/warning.svg";
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
