@@ -22,6 +22,8 @@ let months = [
   "December",
 ];
 
+let celsiusTemperature = null;
+
 let apiKey = "f85062d84430cd35a6b8db439bd6c8f6";
 let weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
@@ -48,12 +50,13 @@ function openingPageCurrentLocation() {
     axios.get(weatherApiUrl).then(displayWeatherCondition);
     function displayWeatherCondition(response) {
       console.log(response);
+      celsiusTemperature = Math.round(response.data.main.temp);
       let city = document.querySelector("#current-city");
       let latitude = Math.round(position.coords.latitude);
       let longitude = Math.round(position.coords.longitude);
       city.innerHTML = `${response.data.name} <br /> Latitude: ${latitude} <br /> Longitude: ${longitude}`;
       let temperature = document.querySelector("#temperature");
-      temperature.innerHTML = Math.round(response.data.main.temp) + "°C";
+      temperature.innerHTML = Math.round(response.data.main.temp);
       let humidity = document.querySelector("#humidity");
       humidity.innerHTML = response.data.main.humidity;
       let windspeed = document.querySelector("#windspeed");
@@ -83,12 +86,13 @@ function searchCurrentLocation(position) {
   axios.get(weatherApiUrl).then(displayWeatherCondition);
   function displayWeatherCondition(response) {
     console.log(response);
+    celsiusTemperature = Math.round(response.data.main.temp);
     let city = document.querySelector("#current-city");
     let latitude = Math.round(position.coords.latitude);
     let longitude = Math.round(position.coords.longitude);
     city.innerHTML = `${response.data.name} <br /> Latitude: ${latitude} <br /> Longitude: ${longitude}`;
     let temperature = document.querySelector("#temperature");
-    temperature.innerHTML = Math.round(response.data.main.temp) + "°C";
+    temperature.innerHTML = Math.round(response.data.main.temp);
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.main.humidity;
     let windspeed = document.querySelector("#windspeed");
@@ -107,10 +111,11 @@ function searchCity(event) {
     .then(displayWeatherCondition);
   function displayWeatherCondition(response) {
     console.log(response);
+    celsiusTemperature = Math.round(response.data.main.temp);
     let city = document.querySelector("#current-city");
     city.innerHTML = `${response.data.name} `;
     let temperature = document.querySelector("#temperature");
-    temperature.innerHTML = Math.round(response.data.main.temp) + "°C";
+    temperature.innerHTML = Math.round(response.data.main.temp);
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.main.humidity;
     let windspeed = document.querySelector("#windspeed");
@@ -119,3 +124,26 @@ function searchCity(event) {
     description.innerHTML = response.data.weather[0].main;
   }
 }
+
+function convertToFarenheit(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  farenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperature");
+  let farenheitTemperature = celsiusTemperature * 1.8 + 32;
+  temperatureElement.innerHTML = Math.round(farenheitTemperature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  farenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = celsiusTemperature;
+}
+
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", convertToFarenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);

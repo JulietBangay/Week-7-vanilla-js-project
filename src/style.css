@@ -68,17 +68,26 @@ div.col-6 {
   padding: 30px;
 }
 
-#celsius-link,
-#farenheit-link {
+a {
   color: #ff487e;
   text-decoration: none;
   font-size: 13px;
 }
 
-#celsius-link:hover,
-#farenheit-link:hover {
+a:hover {
   text-decoration: underline;
   color: #ad2e65;
+}
+.active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+
+.active:hover {
+  color: black;
+  text-decoration: none;
+  cursor: default;
 }
 
 p {
