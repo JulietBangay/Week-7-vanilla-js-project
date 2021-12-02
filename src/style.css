@@ -54,7 +54,8 @@ div.col-6 {
 }
 
 #current-date,
-#current-time {
+#current-time,
+#updated {
   font-size: 25px;
 }
 
