@@ -66,6 +66,7 @@ function openingPageCurrentLocation() {
       windspeed.innerHTML = Math.round(response.data.wind.speed);
       let description = document.querySelector("#weather-description");
       description.innerHTML = response.data.weather[0].main;
+      displayWeatherForecast(response.data.coord);
     }
   }
   function weatherIconDisplay() {
@@ -135,6 +136,7 @@ function searchCurrentLocation(position) {
     windspeed.innerHTML = Math.round(response.data.wind.speed);
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
+    displayWeatherForecast(response.data.coord);
   }
   function weatherIconDisplay() {
     let description = document.querySelector("#weather-description");
@@ -189,6 +191,7 @@ function searchCity(event) {
     windspeed.innerHTML = Math.round(response.data.wind.speed);
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
+    displayWeatherForecast(response.data.coord);
   }
   function weatherIconDisplay() {
     let description = document.querySelector("#weather-description");
@@ -220,6 +223,93 @@ function searchCity(event) {
       }
     }
   }
+}
+
+function displayWeatherForecast(coordinates) {
+  let apiKey = "f85062d84430cd35a6b8db439bd6c8f6";
+  let forecastApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastApi).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastDay1 = document.querySelector("#forecast-day-1");
+  let forecastDay2 = document.querySelector("#forecast-day-2");
+  let forecastDay3 = document.querySelector("#forecast-day-3");
+  let forecastDay4 = document.querySelector("#forecast-day-4");
+  let forecastDay5 = document.querySelector("#forecast-day-5");
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 2) {
+      forecastDay1.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+      <img src=${forecastWeatherIconDisplay(forecastDay.weather[0].main)} />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+    } else {
+      if (index < 3) {
+        forecastDay2.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+      <img src=${forecastWeatherIconDisplay(forecastDay.weather[0].main)} />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+      } else {
+        if (index < 4) {
+          forecastDay3.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+      <img src=${forecastWeatherIconDisplay(forecastDay.weather[0].main)} />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+        } else {
+          if (index < 5) {
+            forecastDay4.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+      <img src=${forecastWeatherIconDisplay(forecastDay.weather[0].main)} />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+          } else {
+            if (index < 6) {
+              forecastDay5.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+      <img src=${forecastWeatherIconDisplay(forecastDay.weather[0].main)} />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+            }
+          }
+        }
+      }
+    }
+  });
 }
 
 function convertToFarenheit(event) {
